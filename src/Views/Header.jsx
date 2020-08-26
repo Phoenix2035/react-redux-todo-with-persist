@@ -1,6 +1,8 @@
 import React from 'react';
 import {Container, Grid} from "@material-ui/core";
 import Login from "../Components/Login";
+import Logout from "../Components/Logout";
+import AddTodoInput from "../Components/AddTodoInput";
 
 function Header() {
     return (
@@ -10,7 +12,7 @@ function Header() {
                     <Grid container justify={"space-between"} alignItems={'center'}
                           style={{display: 'flex', height: '100%'}}>
                         <p style={{color: 'white', fontSize: '2rem'}}>Todo App</p>
-                        <Login/>
+                        <Logout/>
                     </Grid>
                 </Container>
             </Container>
@@ -20,7 +22,8 @@ function Header() {
                       alignItems={"center"} direction={'column'}>
                     <h1 style={{fontSize: '4rem', margin: '0'}}>Welcome!</h1>
                     <p style={{fontSize: '2rem', color: '#6c7981'}}>To get started, add some items to your list</p>
-                    <p style={{fontSize: '1.5rem', color: '#444', margin: '0'}}>you must be login</p>
+                    {/*<p style={{fontSize: '1.5rem', color: '#444', margin: '0'}}>you must be login</p>*/}
+                    <AddTodoInput/>
                 </Grid>
             </Container>
         </header>
