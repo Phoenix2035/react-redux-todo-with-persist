@@ -4,7 +4,7 @@ import theme from "./Themes/theme"
 
 import Header from "./Views/Header"
 import TodoBody from "./Components/TodoBody"
-
+// import EditTodo from "./Components/EditTodo";
 
 
 function App() {
@@ -14,6 +14,7 @@ function App() {
         <MuiThemeProvider theme={theme}>
             <Header/>
             <TodoBody/>
+            {/*<EditTodo/>*/}
         </MuiThemeProvider>
     )
 

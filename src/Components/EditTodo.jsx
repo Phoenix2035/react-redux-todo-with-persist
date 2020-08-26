@@ -3,7 +3,6 @@ import TextField from "@material-ui/core/TextField";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Button} from "@material-ui/core";
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -17,23 +16,21 @@ const useStyles = makeStyles((theme) => ({
         }
     }
 }));
-
-function AddTodoInput() {
+function EditTodo() {
     const classes = useStyles();
-
     return (
         <form className={classes.root} noValidate autoComplete="off" style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            width: '50%'
+            marginTop:'3rem'
         }}>
-            <TextField className={classes.input} label="I want to do..." variant="outlined"/>
-            <Button variant={"contained"} color={"primary"} style={{width:'2rem', height:'4rem',color:'white',fontSize:'1.2rem'}}>
-                Add
+            <TextField className={classes.input}  variant="outlined"/>
+            <Button variant={"contained"} color={"primary"} style={{width:'2rem', height:'4rem'}}>
+                Edit
             </Button>
         </form>
     );
 }
 
-export default AddTodoInput;
+export default EditTodo;

@@ -3,8 +3,8 @@ import {Button} from "@material-ui/core";
 
 function Logout() {
     return (
-        <Button variant={"contained"} color={"secondary"} size={"large"}
-                style={{fontSize: '1.2rem'}}>Logout</Button>
+        <Button variant={"contained"}
+                style={{fontSize: '1.2rem', background: '#dd3546', color: 'white'}}>Logout</Button>
     );
 }
 
