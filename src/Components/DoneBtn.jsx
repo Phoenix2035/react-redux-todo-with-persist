@@ -3,17 +3,17 @@ import makeStyles from "@material-ui/core/styles/makeStyles"
 import {Button} from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        fontSize: '1.2rem',
+    toDoBtn: {
+        marginRight: '.5rem',
     }
 }));
 
-function Login() {
+function DoneBtn() {
     const classes = useStyles()
 
     return (
-        <Button className={classes.root} variant={"contained"} color={"secondary"} size={"large"}>Login</Button>
+        <Button className={classes.toDoBtn} variant={"contained"} color={'secondary'}>Done</Button>
     );
 }
 
-export default Login;
+export default DoneBtn;

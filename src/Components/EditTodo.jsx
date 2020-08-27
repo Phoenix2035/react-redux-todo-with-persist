@@ -5,28 +5,29 @@ import {Button} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& > *': {
-            margin: theme.spacing(2),
-            width: '30rem'
-        }
+        margin: '0 auto',
+        width: '40rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: '3rem',
     },
     input: {
-        "&::placeholder": {
-            fontSize: '3rem'
-        }
+        width: '30rem',
+    },
+    btn: {
+        width: '2rem',
+        height: '4rem',
+        fontSize: '1.2rem'
     }
 }));
+
 function EditTodo() {
     const classes = useStyles();
     return (
-        <form className={classes.root} noValidate autoComplete="off" style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            marginTop:'3rem'
-        }}>
-            <TextField className={classes.input}  variant="outlined"/>
-            <Button variant={"contained"} color={"primary"} style={{width:'2rem', height:'4rem'}}>
+        <form className={classes.root} noValidate autoComplete="off">
+            <TextField className={classes.input} variant="outlined"/>
+            <Button className={classes.btn} variant={"contained"} color={"primary"}>
                 Edit
             </Button>
         </form>
