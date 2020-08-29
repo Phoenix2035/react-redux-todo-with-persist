@@ -1,21 +1,25 @@
 import React from 'react';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import theme from "./Themes/theme"
 
 import TodoBody from "./Components/TodoBody"
 import Header from "./Views/Header"
 import EditTodo from "./Components/EditTodo";
+import {Provider} from "react-redux";
+import store from "./Redux/store";
 
 
 function App() {
 
 
     return (
-        <MuiThemeProvider theme={theme}>
-            <Header/>
-            <TodoBody/>
-            {/*<EditTodo/>*/}
-        </MuiThemeProvider>
+        <Provider store={store}>
+            <MuiThemeProvider theme={theme}>
+                <Header/>
+                <TodoBody/>
+                {/*<EditTodo/>*/}
+            </MuiThemeProvider>
+        </Provider>
     )
 
 }

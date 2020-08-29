@@ -3,6 +3,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles"
 import {Button, Container, Grid, Paper, Tab, Tabs} from "@material-ui/core"
 import UndoneBtn from "./UndoneBtn";
 import DoneBtn from "./DoneBtn";
+import {connect, useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     toDoBody: {
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop:'1rem'
     },
     toDoJob: {
         margin: '1rem',
@@ -41,9 +43,11 @@ const useStyles = makeStyles((theme) => ({
 
 function TodoBody() {
     const classes = useStyles()
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(0)
 
-    const handleChange = (event, newValue) => {
+    const todoList = useSelector(state => state.todo.todoList)
+
+    const handleChangeTabs = (event, newValue) => {
         setValue(newValue);
     };
     return (
@@ -52,7 +56,7 @@ function TodoBody() {
                 <Grid item xs={12}>
                     <Tabs
                         value={value}
-                        onChange={handleChange}
+                        onChange={handleChangeTabs}
                         indicatorColor="primary"
                         textColor="primary"
                         centered
@@ -63,16 +67,23 @@ function TodoBody() {
                 </Grid>
 
                 <Grid className={classes.toDos} item xs={10} md={8}>
-                    <Paper className={classes.toDoBody} elevation={1}>
-                        <span className={classes.toDoJob}>Hello</span>
 
-                        <span>
-                            <DoneBtn/>
-                            {/*<UndoneBtn/>*/}
-                            <Button className={classes.toDoBtn} variant={"contained"} color={"primary"}>Edit</Button>
-                            <Button className={classes.toDoBtnDel} variant={"contained"}>Delete</Button>
-                        </span>
-                    </Paper>
+                    {
+                        todoList.map(item =>
+                            <Paper className={classes.toDoBody} elevation={1} key={item.id}>
+                                <span className={classes.toDoJob}>{item.text}</span>
+
+                                <span>
+                                    <DoneBtn/>
+                                    {/*<UndoneBtn/>*/}
+                                    <Button className={classes.toDoBtn} variant={"contained"}
+                                            color={"primary"}>Edit</Button>
+                                    <Button className={classes.toDoBtnDel} variant={"contained"}>Delete</Button>
+                                </span>
+                            </Paper>
+                        )
+                    }
+
 
                 </Grid>
             </Container>
@@ -80,4 +91,5 @@ function TodoBody() {
     );
 }
 
-export default TodoBody;
+
+export default connect(null, {})(TodoBody);

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Button} from "@material-ui/core";
+import {connect} from "react-redux";
+import {addTodo} from "../Redux/ToDo/todo.action";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,17 +25,61 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function AddTodoInput() {
-    const classes = useStyles();
+function AddTodoInput({addTodo}) {
+    const classes = useStyles()
+    const inputElement = useRef(null);
+
+    const [todo, setTodo] = useState({
+        text: ''
+    })
+
+
+    const handleChange = e => {
+        const {name, value} = e.target
+        setTodo({
+            ...todo,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        todo.text.length > 0 && addTodo({
+            ...todo,
+            id: Date.now()
+
+        })
+        setTodo({
+            text: ''
+        })
+        inputElement.current.focus()
+    }
 
     return (
-        <form className={classes.root} noValidate autoComplete="off">
-            <TextField className={classes.input} label="I want to do..." variant="outlined"/>
-            <Button className={classes.btn} variant={"contained"} color={"primary"}>
+        <form
+            onSubmit={handleSubmit}
+            className={classes.root}
+            autoComplete="off">
+
+            <TextField
+                onChange={handleChange}
+                value={todo.text}
+                inputRef={inputElement}
+                name='text'
+                type='text'
+                className={classes.input}
+                label="I want to do..."
+                variant="outlined"/>
+
+            <Button
+                type='submit'
+                className={classes.btn}
+                variant={"contained"}
+                color={"primary"}>
                 Add
             </Button>
         </form>
     );
 }
 
-export default AddTodoInput;
+export default connect(null, {addTodo})(AddTodoInput)
