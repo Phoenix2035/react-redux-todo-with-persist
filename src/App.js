@@ -3,7 +3,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import theme from "./Themes/theme"
 
 import TodoBody from "./Components/TodoBody"
-import Header from "./Views/Header"
+import Header from "./Components/Header";
 import EditTodo from "./Components/EditTodo";
 import {Provider} from "react-redux";
 import store from "./Redux/store";

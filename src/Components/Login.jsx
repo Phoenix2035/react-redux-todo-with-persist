@@ -8,11 +8,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function Login() {
+function Login({handleClick}) {
     const classes = useStyles()
 
     return (
-        <Button className={classes.root} variant={"contained"} color={"secondary"} size={"large"}>Login</Button>
+        <Button
+            onClick={handleClick}
+            className={classes.root}
+            variant={"contained"}
+            color={"secondary"}
+            size={"large"}>Login</Button>
     );
 }
 

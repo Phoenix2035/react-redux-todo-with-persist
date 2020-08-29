@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container, Grid} from "@material-ui/core"
-import Login from "../Components/Login"
-import Logout from "../Components/Logout"
-import AddTodoInput from "../Components/AddTodoInput"
+import Login from "./Login"
+import Logout from "./Logout"
+import AddTodoInput from "./AddTodoInput"
 import makeStyles from "@material-ui/core/styles/makeStyles"
 
 const useStyles = makeStyles((theme) => ({
@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '4rem',
         margin: '0'
     },
-    contentDesc:{
+    contentDesc: {
         fontSize: '2rem',
         color: '#6c7981'
     },
-    contentLogin:{
+    contentLogin: {
         fontSize: '1.5rem',
         color: '#444',
         margin: '0'
@@ -51,13 +51,20 @@ const useStyles = makeStyles((theme) => ({
 
 function Header() {
     const classes = useStyles()
+
+    const [loggedIn, setLoggedIn] = useState(true)
+
+    const handleClick = e => {
+        setLoggedIn(!loggedIn);
+    };
+
     return (
         <header>
             <Container className={classes.root} maxWidth={'xl'}>
                 <Container className={classes.header} maxWidth={'lg'}>
                     <Grid className={classes.headerInside} container>
                         <p className={classes.logo}>Todo App</p>
-                        <Login/>
+                        {loggedIn ? <Login handleClick={handleClick}/> : <Logout handleClick={handleClick}/>}
                     </Grid>
                 </Container>
             </Container>
@@ -66,8 +73,14 @@ function Header() {
                 <Grid className={classes.contentBody} container>
                     <h1 className={classes.contentHead}>Welcome!</h1>
                     <p className={classes.contentDesc}>To get started, add some items to your list</p>
-                    {/*<p className={classes.contentLogin}>you must be login</p>*/}
-                    <AddTodoInput/>
+                    {
+                        loggedIn
+                            ?
+                            <p className={classes.contentLogin}>you must be login</p>
+                            :
+                            <AddTodoInput/>
+                    }
+
                 </Grid>
             </Container>
         </header>

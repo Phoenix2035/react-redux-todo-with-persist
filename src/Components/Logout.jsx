@@ -6,15 +6,22 @@ const useStyles = makeStyles((theme) => ({
     root: {
         fontSize: '1.2rem',
         background: '#dd3546',
-        color: 'white'
+        color: 'white',
+        "&:hover": {
+            background: 'rgb(134,9,20)'
+        }
     }
 }));
 
 
-function Logout() {
+function Logout({handleClick}) {
     const classes = useStyles()
     return (
-        <Button className={classes.root} variant={"contained"} size={"large"}>Logout</Button>
+        <Button
+            onClick={handleClick}
+            className={classes.root}
+            variant={"contained"}
+            size={"large"}>Logout</Button>
     );
 }
 
