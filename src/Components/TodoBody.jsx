@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import makeStyles from "@material-ui/core/styles/makeStyles"
-import {Button, Container, Grid, Paper, Tab, Tabs} from "@material-ui/core"
+import { Button, Container, Grid, Paper } from "@material-ui/core"
 import UndoneBtn from "./UndoneBtn";
 import DoneBtn from "./DoneBtn"
-import {deleteTodo} from '../Redux/ToDo/todo.action'
-import {connect, useSelector} from "react-redux";
+import { deleteTodo, doneToggle } from '../Redux/ToDo/todo.action'
+import { connect, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,43 +42,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function TodoBody({deleteTodo}) {
+function TodoBody({ deleteTodo, doneToggle }) {
     const classes = useStyles()
-    const [value, setValue] = useState(0)
 
     const todoList = useSelector(state => state.todo.todoList)
 
-    const handleChangeTabs = (event, newValue) => {
-        setValue(newValue);
-    };
     return (
         <section>
             <Container className={classes.root} maxWidth={'md'}>
-                <Grid item xs={12}>
-                    <Tabs
-                        value={value}
-                        onChange={handleChangeTabs}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        centered
-                    >
-                        <Tab className={classes.tabs} value={0} label="Undone"/>
-                        <Tab className={classes.tabs} value={1} label="Done"/>
-                    </Tabs>
-                </Grid>
 
                 <Grid className={classes.toDos} item xs={10} md={8}>
 
                     {
                         todoList.map(item =>
+
                             <Paper className={classes.toDoBody} elevation={1} key={item.id}>
                                 <span className={classes.toDoJob}>{item.text}</span>
-
                                 <span>
-                                    <DoneBtn/>
-                                    {/*<UndoneBtn/>*/}
+
+                                    {!item.done
+                                        ?
+                                        <DoneBtn done={() => doneToggle(item.id)} item={item} />
+                                        :
+                                        <UndoneBtn done={() => doneToggle(item.id)} item={item} />
+                                    }
+
                                     <Button className={classes.toDoBtn} variant={"contained"}
-                                            color={"primary"}>Edit</Button>
+                                        color={"primary"}>Edit</Button>
 
                                     <Button
                                         onClick={() => deleteTodo(item.id)}
@@ -96,4 +86,4 @@ function TodoBody({deleteTodo}) {
 }
 
 
-export default connect(null, {deleteTodo})(TodoBody);
+export default connect(null, { deleteTodo, doneToggle })(TodoBody);

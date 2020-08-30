@@ -30,7 +30,8 @@ function AddTodoInput({addTodo}) {
     const inputElement = useRef(null);
 
     const [todo, setTodo] = useState({
-        text: ''
+        text: '',
+        done: false
     })
 
 
@@ -46,8 +47,7 @@ function AddTodoInput({addTodo}) {
         e.preventDefault()
         todo.text.length > 0 && addTodo({
             ...todo,
-            id: Date.now()
-
+            id: Date.now(),
         })
 
         setTodo({

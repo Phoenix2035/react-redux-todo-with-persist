@@ -15,3 +15,13 @@ export const deleteTodo = (todoId) => {
     }
 }
 
+export const doneToggle = (todoId) => {
+    return {
+        type: types.DONE_TOGGLE,
+        payload: todoId
+    }
+}
+
+
+
+

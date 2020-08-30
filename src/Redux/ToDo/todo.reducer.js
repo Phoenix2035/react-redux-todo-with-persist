@@ -18,6 +18,17 @@ const todoReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 todoList: state.todoList.filter(item => item.id !== payload)
             }
+        case types.DONE_TOGGLE:
+            return {
+                ...state,
+                todoList: state.todoList.map(item => {
+                    if (item.id === payload) {
+                        item.done = !item.done
+                        return item
+                    } else
+                        return item
+                })
+            }
         default:
             return state
     }

@@ -7,18 +7,20 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '.5rem',
         color: 'white',
         background: 'rgba(255,172,0,0.91)',
-        "&:hover":{
+        "&:hover": {
             background: 'rgba(133,93,12,0.78)'
         }
     }
 }));
 
 
-
-function UndoneBtn() {
+function UndoneBtn({done,item}) {
     const classes = useStyles()
     return (
-        <Button className={classes.toDoBtn} variant={"contained"}>UnDone</Button>
+        <Button
+            onClick={()=>done(item.id)}
+            className={classes.toDoBtn}
+            variant={"contained"}>UnDone</Button>
     );
 }
 
