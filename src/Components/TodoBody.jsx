@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import makeStyles from "@material-ui/core/styles/makeStyles"
 import {Button, Container, Grid, Paper, Tab, Tabs} from "@material-ui/core"
 import UndoneBtn from "./UndoneBtn";
-import DoneBtn from "./DoneBtn";
+import DoneBtn from "./DoneBtn"
+import {deleteTodo} from '../Redux/ToDo/todo.action'
 import {connect, useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop:'1rem'
+        marginTop: '1rem'
     },
     toDoJob: {
         margin: '1rem',
@@ -41,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function TodoBody() {
+function TodoBody({deleteTodo}) {
     const classes = useStyles()
     const [value, setValue] = useState(0)
 
@@ -78,12 +79,15 @@ function TodoBody() {
                                     {/*<UndoneBtn/>*/}
                                     <Button className={classes.toDoBtn} variant={"contained"}
                                             color={"primary"}>Edit</Button>
-                                    <Button className={classes.toDoBtnDel} variant={"contained"}>Delete</Button>
+
+                                    <Button
+                                        onClick={() => deleteTodo(item.id)}
+                                        className={classes.toDoBtnDel}
+                                        variant={"contained"}>Delete</Button>
                                 </span>
                             </Paper>
                         )
                     }
-
 
                 </Grid>
             </Container>
@@ -92,4 +96,4 @@ function TodoBody() {
 }
 
 
-export default connect(null, {})(TodoBody);
+export default connect(null, {deleteTodo})(TodoBody);

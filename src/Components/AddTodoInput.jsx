@@ -49,6 +49,7 @@ function AddTodoInput({addTodo}) {
             id: Date.now()
 
         })
+
         setTodo({
             text: ''
         })

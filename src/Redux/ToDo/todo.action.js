@@ -8,3 +8,10 @@ export const addTodo = (todo) => {
     }
 }
 
+export const deleteTodo = (todoId) => {
+    return {
+        type: types.DELETE_TO_DO,
+        payload: todoId
+    }
+}
+
