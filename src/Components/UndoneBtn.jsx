@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function UndoneBtn({done,item}) {
+function UndoneBtn({done, item}) {
     const classes = useStyles()
     return (
         <Button
-            onClick={()=>done(item.id)}
+            onClick={() => done(item)}
             className={classes.toDoBtn}
             variant={"contained"}>UnDone</Button>
     );

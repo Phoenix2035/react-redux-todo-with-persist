@@ -1,16 +1,16 @@
-import React from 'react';
-import TextField from "@material-ui/core/TextField";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import {Button} from "@material-ui/core";
+import React, {useState} from 'react'
+import TextField from "@material-ui/core/TextField"
+import makeStyles from "@material-ui/core/styles/makeStyles"
+import {Button} from "@material-ui/core"
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
+        width: '90%',
         margin: '0 auto',
-        width: '40rem',
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        marginTop: '3rem',
     },
     input: {
         width: '30rem',
@@ -22,15 +22,30 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function EditTodo() {
-    const classes = useStyles();
+function EditTodo({edit, item}) {
+    const classes = useStyles()
+    const todoList = useSelector(state => state.todo.todoList.find(todo => todo.id === item.id))
+
+
+    console.log(todoList)
+
+    const [text, setText] = useState(item.text)
+
     return (
-        <form className={classes.root} noValidate autoComplete="off">
-            <TextField className={classes.input} variant="outlined"/>
-            <Button className={classes.btn} variant={"contained"} color={"primary"}>
+        <div className={classes.root}>
+            <TextField
+                onChange={e => setText(e.target.value)}
+                value={text}
+                className={classes.input}
+                variant="outlined"/>
+            <Button
+                onClick={() => edit(item.id,text)}
+                className={classes.btn}
+                variant={"contained"}
+                color={"primary"}>
                 Edit
             </Button>
-        </form>
+        </div>
     );
 }
 

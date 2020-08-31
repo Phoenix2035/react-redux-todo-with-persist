@@ -1,8 +1,7 @@
 import types from './todo.types'
 
 const initialState = {
-    todoList: [],
-    search: ""
+    todoList: []
 }
 
 const todoReducer = (state = initialState, {type, payload}) => {
@@ -28,6 +27,15 @@ const todoReducer = (state = initialState, {type, payload}) => {
                     } else
                         return item
                 })
+            }
+        case types.UPDATE_TO_DO:
+            return {
+                ...state,
+                todoList: state.todoList.map(item => item.id === payload.id ? {
+                    id: payload.id,
+                    done: false,
+                    text: payload.text
+                } : item)
             }
         default:
             return state

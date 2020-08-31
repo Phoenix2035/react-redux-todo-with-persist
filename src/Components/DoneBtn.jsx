@@ -8,12 +8,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function DoneBtn({done,item}) {
+function DoneBtn({done, item}) {
     const classes = useStyles()
-
     return (
         <Button
-            onClick={()=>done(item.id)}
+            onClick={() => done(item)}
             className={classes.toDoBtn}
             variant={"contained"}
             color={'secondary'}>Done</Button>
