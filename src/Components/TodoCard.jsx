@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
+import {useSpring, animated} from 'react-spring'
 import makeStyles from "@material-ui/core/styles/makeStyles"
-import {connect, useSelector} from "react-redux";
-import {Button, Paper} from "@material-ui/core";
-import DoneBtn from "./DoneBtn";
-import UndoneBtn from "./UndoneBtn";
-import EditTodo from "./EditTodo";
-import {deleteTodo, editTodo, doneToggle} from "../Redux/ToDo/todo.action";
-import DoneUndone from "./DoneUndone";
+import {connect} from "react-redux"
+import {Button, Paper} from "@material-ui/core"
+import EditTodo from "./EditTodo"
+import {deleteTodo, editTodo, doneToggle} from "../Redux/ToDo/todo.action"
+import DoneUndone from "./DoneUndone"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             background: 'rgb(134,9,20)'
         }
-    }
+    },
+
 }));
 
 function TodoCard({item, editTodo, deleteTodo, doneToggle}) {
@@ -47,6 +47,7 @@ function TodoCard({item, editTodo, deleteTodo, doneToggle}) {
         setEdit(false)
     }
     return (
+
         <Paper className={classes.toDoBody} elevation={1}>
             {
                 !edit
