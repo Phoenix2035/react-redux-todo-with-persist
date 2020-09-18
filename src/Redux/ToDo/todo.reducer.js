@@ -22,8 +22,7 @@ const todoReducer = (state = initialState, {type, payload}) => {
                 ...state,
                 todoList: state.todoList.map(item => {
                     if (item.id === payload) {
-                        item.done = !item.done
-                        return item
+                        return { ...item, done: !item.done }
                     } else
                         return item
                 })
