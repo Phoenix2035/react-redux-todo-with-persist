@@ -27,8 +27,6 @@ function EditTodo({edit, item}) {
     const todoList = useSelector(state => state.todo.todoList.find(todo => todo.id === item.id))
 
 
-    console.log(todoList)
-
     const [text, setText] = useState(item.text)
 
     return (
